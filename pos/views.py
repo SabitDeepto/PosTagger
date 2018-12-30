@@ -5,13 +5,12 @@ from pos.forms import WordForm
 
 
 def home(request):
-    form = WordForm(request.GET)
+    form = WordForm(request.POST)
+
     if form.is_valid():
         global catch
         catch = form.cleaned_data.get('word').split(' ')
-        return redirect('home')
 
-    return render(request, 'design.html', {'form': form, 'query': catch})
+        return render(request, 'design.html', {'query': catch, 'form': form})
 
-
-
+    return render(request, 'design.html')
