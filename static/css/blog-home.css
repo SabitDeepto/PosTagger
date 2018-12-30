@@ -1,0 +1,30 @@
+/*!
+ * Start Bootstrap - Blog Home (https://startbootstrap.com/template-overviews/blog-home)
+ * Copyright 2013-2017 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-blog-home/blob/master/LICENSE)
+ */
+
+body {
+  padding-top: 0px;
+}
+
+.colors div {
+  margin: 3px;
+  padding: 3px 7px 3px 7px;
+  border-radius: 3px;
+}
+
+.btn span.glyphicon {    			
+	opacity: 0;				
+}
+.btn.active span.glyphicon {				
+	opacity: 1;				
+}
+
+@media (min-width: 992px) {
+  body {
+    padding-top: 0px;
+  }
+
+
+}
