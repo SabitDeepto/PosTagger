@@ -9,8 +9,12 @@ def home(request):
     form = WordForm(request.POST)
 
     if form.is_valid():
-        catch = [form.cleaned_data.get('word').split(' ')]
-        for temp in catch:
+        list_of_words = form.cleaned_data.get('word').split(' ')
+        list_of_pos = ['Noun', 'Pronoun', 'Verb']
+        words = zip(list_of_words, list_of_pos)
+        result = dict(words)
+
+        for temp in result:
             return render(request, 'design.html', {'query': temp, 'form': form})
 
     return render(request, 'design.html', {'form': form})
@@ -26,5 +30,5 @@ def test(request):
         else:
             age = age * 10
 
-        return render(request, 'index.html', {'age': age, 'form': form, 'sex':sex})
+        return render(request, 'index.html', {'age': age, 'form': form, 'sex': sex})
     return render(request, 'index.html', {'form': form})

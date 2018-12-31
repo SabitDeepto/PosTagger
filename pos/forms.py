@@ -12,6 +12,11 @@ class WordForm(forms.ModelForm):
 
         }
 
+        # def clean_word(self, *args, **kwargs):
+        #     word = self.cleaned_data.get("word")
+        #     x = str(word.split())
+        #     return x
+
 
 CHOICE = [
     ('Male', 'Male'),

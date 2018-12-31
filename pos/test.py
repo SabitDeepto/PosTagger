@@ -3,13 +3,13 @@ def splitter(spl):
 
 
 print("insert sentence: ")
-x = splitter(input())
-y = str(x)
 
-listOfInt = [56, 23, 43, 97, 43, 102]
+listOfWords = splitter(input())
 
-Words = zip(x, listOfInt)
+
+listOfInt = ['Noun', 'Pronoun', 'Verb']
+
+Words = zip(listOfWords, listOfInt)
 zz = dict(Words)
 
 print(zz)
-print(type(zz))
