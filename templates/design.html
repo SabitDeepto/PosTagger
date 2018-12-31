@@ -52,13 +52,24 @@
                   <div id="form" class="mode-edit">
                   <form  method="post" action="/">
                          {% csrf_token %}
-                                {{ form.as_p }}
+                                {{ form.word }}
 
-                              <input type="submit" value="Submit" /> </br>
+                              <input type="submit" value="Submit" />
 
-                      <textarea rows="4" cols="50">
-                        {{ query }}
-                       </textarea>
+
+</br>
+                      </br>
+
+
+                      {% for  value in query %}
+
+                          <li>
+                          <button type="button" class="btn btn-success">
+                         <a href="/">{{value}}</a>
+                        </button>
+                          </li> <br>
+
+                      {% endfor %}
                   </form>
                     </div>
                 </div>
