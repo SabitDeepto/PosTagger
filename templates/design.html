@@ -54,24 +54,36 @@
                          {% csrf_token %}
                                 {{ form.word }}
 
-                              <input type="submit" value="Submit" />
+                              <input type="submit" value="Split Text" />
 
 
-</br>
-                      </br>
+<br>
+                      <br>
 
 
-                      {% for  value in query %}
+        {% for  value in query %}
+            <!-- Split button -->
+            <div class="btn-group">
+              <button type="button" class="btn btn-info">{{ value }}</button>
+              <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
 
-                          <li>
-                          <button type="button" class="btn btn-success">
-                         <a href="/">{{value}}</a>
-                        </button>
-                          </li> <br>
+              <ul class="dropdown-menu">
+                <li><a href="#">Noun</a></li>
+                <li><a href="#">Pronoun</a></li>
+                <li><a href="#">Verb</a></li>
+                <li><a href="#">Adverb</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Others</a></li>
+              </ul>
 
-                      {% endfor %}
-                  </form>
-                    </div>
+            </div>
+      {% endfor %}
+
+  </form>
+    </div>
                 </div>
 
 
