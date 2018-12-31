@@ -13,9 +13,8 @@ def home(request):
         list_of_pos = ['Noun', 'Pronoun', 'Verb']
         words = zip(list_of_words, list_of_pos)
         result = dict(words)
-
-        for temp in result:
-            return render(request, 'design.html', {'query': temp, 'form': form})
+        print(result)
+        return render(request, 'design.html', {'query': result, 'form': form})
 
     return render(request, 'design.html', {'form': form})
 
