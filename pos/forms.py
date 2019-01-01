@@ -1,14 +1,25 @@
 from django import forms
 from pos.models import Word
 
+POS = [
+    ('Noun ', 'Noun'),
+    ('Pronoun', 'Pronoun'),
+    ('Verb', 'Verb'),
+    ('Others', 'Others')
+]
+
 
 class WordForm(forms.ModelForm):
     class Meta:
         model = Word
-        fields = ['word']
+        fields = ['word', 'pos']
         widgets = {
             'word': forms.TextInput(
                 attrs={'class': "form-control", 'placeholder': "Enter word", 'type': "text", 'name': 'q'}),
+            'pos': forms.Select(
+                attrs={'class': "btn btn-info dropdown-toggle", 'type': "button", "data-toggle": "dropdown",
+                       "aria-haspopup": "true", "aria-expanded": "false"
+                       }),
 
         }
 
