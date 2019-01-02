@@ -1,12 +1,187 @@
-<html>
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <title>Split</title>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="{% static 'css/blog-home.css' %}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
+
 <body>
-    <form action="" method="POST">{% csrf_token %}
-        {{ form }}
-        <input type="submit" value="submit">
-    </form>
-    <h1>your age is : {{ age }} and you are a {{ sex }}</h1>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">WebSiteName</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Grammar</a></li>
+            <li><a href="#">Stats</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+<div class="container">
+    <div class="row">
+
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+            <!-- Blog Post -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#home">Edit</a></li>
+                        <li><a data-toggle="tab" href="#menu1">Option 2</a></li>
+                        <li><a data-toggle="tab" href="#menu2">Import</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="home" class="tab-pane fade in active">
+                            <p class="hidden-xs hidden-sm"></p>
+                            <div id="form" class="mode-edit">
+                                <form method="post" action="{% url 'test' %}">
+                                    {% csrf_token %}
+                                    {{ form.word }}
+
+                                    <input type="submit" value="Split Text"/>
+                                    <br>
+                                    <br>
+                                    {% for  value in query %}
+                                        <!-- Split button -->
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-info">{{ value }}</button>
+                                            <button type="button" class="btn btn-info dropdown-toggle"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <span class="caret"></span>
+                                                <span class="sr-only">Toggle Dropdown</span>
+                                            </button>
+
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">Noun</a></li>
+                                                <li><a href="#">Pronoun</a></li>
+                                                <li><a href="#">Verb</a></li>
+                                                <li><a href="#">Adverb</a></li>
+                                                <li role="separator" class="divider"></li>
+                                                <li><a href="#">Others</a></li>
+                                            </ul>
+
+                                        </div>
+                                    {% endfor %}
+
+                                </form>
+                            </div>
+                        </div>
+
+
+                        <div id="menu1" class="tab-pane fade">
+                            <h3>Menu 1</h3>
+                            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                                commodo consequat.</p>
+                        </div>
+                        <div id="menu2" class="tab-pane fade">
+                            <h3>Menu 2</h3>
+                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                                laudantium, totam rem aperiam.</p>
+                        </div>
+                        <div id="menu3" class="tab-pane fade">
+                            <h3>Menu 3</h3>
+                            <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
+                                explicabo.</p>
+                        </div>
+                    </div>
+                    <hr/>
+                </div>
+            </div>
+        </div>
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+            <!-- Side Widget -->
+            <div class="card my-4">
+                <h5 class="card-header">Side Widget</h5>
+                <hr/>
+                <div class="colors">
+                    <div style="background-color: #fc6;" data-toggle="collapse" data-target="#adjective">Adjective</div>
+                    <div id="adjective" class="collapse">
+                        You can put anything you want inside of these side widgets. They are easy to use, and feature
+                        the new
+                        Bootstrap 4 card containers!
+                    </div>
+                    <div style="background-color: #c99;" data-toggle="collapse" data-target="#adverb">Adverb</div>
+                    <div id="adverb" class="collapse">
+                        You can put anything you want inside of these side widgets. They are easy to use, and feature
+                        the new
+                        Bootstrap 4 card containers!
+                    </div>
+                    <div style="background-color: #cc9;" data-toggle="collapse" data-target="#conjunction">Conjunction
+                    </div>
+                    <div id="conjunction" class="collapse">
+                        You can put anything you want inside of these side widgets. They are easy to use, and feature
+                        the new
+                        Bootstrap 4 card containers!
+                    </div>
+                    <div style="background-color: #99c;" data-toggle="collapse" data-target="#determiner">Determiner
+                    </div>
+                    <div id="determiner" class="collapse">
+                        You can put anything you want inside of these side widgets. They are easy to use, and feature
+                        the new
+                        Bootstrap 4 card containers!
+                    </div>
+                    <div style="background-color: #ccc;" data-toggle="collapse" data-target="#noun">Noun</div>
+                    <div id="noun" class="collapse">
+                        You can put anything you want inside of these side widgets. They are easy to use, and feature
+                        the new
+                        Bootstrap 4 card containers!
+                    </div>
+                    <div style="background-color: #6c9;" data-toggle="collapse" data-target="#number">Number</div>
+                    <div id="number" class="collapse">
+                        You can put anything you want inside of these side widgets. They are easy to use, and feature
+                        the new
+                        Bootstrap 4 card containers!
+                    </div>
+                    <div style="background-color: #f9c;" data-toggle="collapse" data-target="#preposition">Preposition
+                    </div>
+                    <div id="preposition" class="collapse">
+                        You can put anything you want inside of these side widgets. They are easy to use, and feature
+                        the new
+                        Bootstrap 4 card containers!
+                    </div>
+                    <div style="background-color: #ee7;" data-toggle="collapse" data-target="#pronoun">Pronoun</div>
+                    <div id="pronoun" class="collapse">
+                        You can put anything you want inside of these side widgets. They are easy to use, and feature
+                        the new
+                        Bootstrap 4 card containers!
+                    </div>
+                    <div style="background-color: #cf6;" data-toggle="collapse" data-target="#verb">Verb</div>
+                    <div id="verb" class="collapse">
+                        You can put anything you want inside of these side widgets. They are easy to use, and feature
+                        the new
+                        Bootstrap 4 card containers!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+    <footer>
+        <p></p>
+    </footer>
+</div>
+</div>
+
+<script>
+    $("#adjective_btn").click(function () {
+        $("#adjective_icon").hide();
+    });
+</script>
+
 </body>
+
 </html>
