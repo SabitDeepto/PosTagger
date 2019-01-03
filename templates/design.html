@@ -10,7 +10,7 @@
 <body>
 
 
-<form method="post" name="q">{% csrf_token %}
+<form method="post">{% csrf_token %}
     {{ form.word }}
     <input type="submit" value="split" name="q"/>
 

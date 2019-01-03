@@ -11,15 +11,16 @@ def test(request):
         if request.POST.get('q'):
             global a
             a = form.cleaned_data.get('word').split(' ')
+            print("split:")
             print(a)
             print(type(a))
             return render(request, 'design.html', {'query': a, 'form': form})
 
         else:
-            for x in a:
-                b = form.cleaned_data.get('pos')
-                print(b)
-                Word.objects.create(word=x, pos=b)
-                return redirect('test')
+            a = form.cleaned_data.get('word').split(' ')
+            b = form.cleaned_data.get('pos')
+            c = dict(zip(a, b))
+            print(c)
+            print(type(c))
 
     return render(request, 'design.html', {'form': form})
