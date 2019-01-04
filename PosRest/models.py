@@ -1,11 +1,6 @@
 from django.db import models
 
 
-# Create your models here.
-class Pos(models.Model):
-    id = models.IntegerField(primary_key=True)
-
-
 class Sentence(models.Model):
     text = models.CharField(max_length=1000)
 
@@ -20,3 +15,5 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.word
+
+

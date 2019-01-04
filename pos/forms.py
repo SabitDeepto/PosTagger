@@ -1,40 +1,39 @@
+from django.contrib.auth.forms import UserCreationForm
 from django import forms
-from pos.models import Word
-
-POS = [
-    ('Noun ', 'Noun'),
-    ('Pronoun', 'Pronoun'),
-    ('Verb', 'Verb'),
-    ('Others', 'Others')
-]
+from django.contrib.auth.models import User
 
 
-class WordForm(forms.ModelForm):
+class RegisterForm(UserCreationForm):
+    # declare the fields you will show
+    username = forms.CharField(label="Your Username")
+    # first password field
+    password1 = forms.CharField(label="Your Password")
+    # confirm password field
+    password2 = forms.CharField(label="Repeat Your Password")
+    email = forms.EmailField(label="Email Address")
+    first_name = forms.CharField()
+    last_name = forms.CharField(label="Surname")
+
+    # this sets the order of the fields
     class Meta:
-        model = Word
-        fields = ['word', 'pos']
+        model = User
+        fields = ("first_name", "last_name", "email", "username", "password1", "password2",)
         widgets = {
-            'word': forms.TextInput(
-                attrs={'class': "form-control", 'placeholder': "Enter word", 'type': "text", 'name': 'q'}),
-            'pos': forms.Select(
-                attrs={'class': "btn btn-info dropdown-toggle", 'type': "button", "data-toggle": "dropdown",
-                       "aria-haspopup": "true", "aria-expanded": "false"
-                       }),
+            'first_name': forms.TextInput(
+                attrs={'class': "form-control", 'placeholder': "Enter your name", 'type': "text"}),
+            'password1': forms.PasswordInput(
+                attrs={'class': "form-control", 'placeholder': "Password", 'type': "password"}),
 
         }
 
-        # def clean_word(self, *args, **kwargs):
-        #     word = self.cleaned_data.get("word")
-        #     x = str(word.split())
-        #     return x
+    # this redefines the save function to include the fields you added
+    def save(self, commit=True):
+        user = super(RegisterForm, self).save(commit=False)
+        user.email = self.cleaned_data["email"]
+        user.first_name = self.cleaned_data["first_name"]
+        user.last_name = self.cleaned_data["last_name"]
 
+        if commit:
+            user.save()
 
-CHOICE = [
-    ('Male', 'Male'),
-    ('Female', 'Female')
-]
-
-
-class TestForm(forms.Form):
-    age = forms.IntegerField()
-    sex = forms.CharField(widget=forms.Select(choices=CHOICE))
+        return user
